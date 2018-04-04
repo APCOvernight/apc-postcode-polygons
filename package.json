@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "description": "Postcode polygons - originally downloaded from https://www.doogal.co.uk/",
   "main": "index.js",
+  "repository": "https://github.com/APCOvernight/apc-postcode-polygons",
   "scripts": {
     "convert": "node src/convert.js",
     "download": "node src/download.js; npm run convert",
