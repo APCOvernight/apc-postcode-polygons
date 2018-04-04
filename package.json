@@ -15,7 +15,7 @@
   ],
   "author": "Mike Hingley <mike.hingley@apc-overnight.com>",
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
     "xml2js": "^0.4.19"
   }
 }
