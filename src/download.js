@@ -13,31 +13,38 @@ class PostcodeDownload {
    * @param {*} options
    */
   async handle (args, options) {
-    const url = 'https://www.doogal.co.uk/kml/PostcodeSectors.kml'
-    const file = fs.createWriteStream('PostcodeSectors.kml')
+    const urls = ['https://www.doogal.co.uk/kml/PostcodeSectors.kml','https://www.doogal.co.uk/kml/PostcodeDistricts.kml']
+    // const file = fs.createWriteStream('PostcodeSectors.kml')
 
+    for (let url of urls){
+      var filename = url.substring(url.lastIndexOf('/')+1);
+      const file = fs.createWriteStream(filename)
+      await this.newMethod(url, file);
+    }
+  }
+
+  async newMethod(url, file) {
     await http.get(url, (res) => {
-      const { statusCode } = res
-      let error
+      const { statusCode } = res;
+      let error;
       if (statusCode !== 200) {
         error = new Error('Request Failed.\n' +
-                          `Status Code: ${statusCode}`)
+          `Status Code: ${statusCode}`);
       }
       if (error) {
-        console.error(`❌  error downloading KML file: ${error.message}`)
+        console.error(`❌  error downloading KML file: ${error.message}`);
         // consume response data to free up memory
-        res.resume()
-        return
+        res.resume();
+        return;
       }
-
-      res.pipe(file)
+      res.pipe(file);
       file.on('finish', () => {
-        file.close()
-        console.info('✨  Downloaded UK Postcode KML file')
-      })
+        file.close();
+        console.info('✨  Downloaded UK Postcode KML file');
+      });
     }).on('error', (e) => {
-      console.error(`❌  error downloading KML file: ${e.message}`)
-    })
+      console.error(`❌  error downloading KML file: ${e.message}`);
+    });
   }
 }
 

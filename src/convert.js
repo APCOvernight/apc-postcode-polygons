@@ -7,19 +7,23 @@ const path = require('path')
 class KMLConverter {
     convert () {
         let parser = new xml2js.Parser()
-        fs.readFile('PostcodeSectors.kml', (err, data) => {
-        if (err) {
-            throw err
+        const files = ['PostcodeSectors.kml','PostcodeDistricts.kml']
+        for(let filename of files){
+            const destFile = filename.split('.')[0] + '.json'
+            fs.readFile(filename, (err, data) => {
+                if (err) {
+                    throw err
+                }
+                parser.parseString(data, (err, result) => {
+                    if (err) {
+                        throw err
+                    }
+                fs.writeFile(destFile, JSON.stringify(result, null, 2), 'utf8')
+                console.info('✨  Converted Postcode KML file ' + filename + ' to ' + destFile)
+                })
+            })
         }
-        parser.parseString(data, (err, result) => {
-        if (err) {
-          throw err
-        }
-        fs.writeFile('PostcodeSectors.json', JSON.stringify(result, null, 2), 'utf8')
-        console.info('✨  Converted Postcode KML file')
-        
-      })
-    })
+    }
 }
-}
+
 module.exports = new KMLConverter().convert()
