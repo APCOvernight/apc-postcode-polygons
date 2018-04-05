@@ -1,6 +1,6 @@
 {
   "name": "apc-postcode-polygons",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Postcode polygons - originally downloaded from https://www.doogal.co.uk/",
   "main": "index.js",
   "repository": "https://github.com/APCOvernight/apc-postcode-polygons",
