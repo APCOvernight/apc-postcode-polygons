@@ -18,7 +18,7 @@ class KMLConverter {
                     if (err) {
                         throw err
                     }
-                fs.writeFile(destFile, JSON.stringify(result, null, 2), 'utf8')
+                fs.writeFile(destFile, JSON.stringify(result, null, 2), {encoding: 'utf8'}, () => { console.log("done!") })
                 console.info('✨  Converted Postcode KML file ' + filename + ' to ' + destFile)
                 })
             })
