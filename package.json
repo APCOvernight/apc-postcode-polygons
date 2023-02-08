@@ -6,7 +6,8 @@
   "repository": "https://github.com/APCOvernight/apc-postcode-polygons",
   "scripts": {
     "convert": "node src/convert.js",
-    "download": "node src/download.js; npm run convert",
+    "download": "node src/download.js; npm run convert; npm run reduce",
+    "reduce": "node src/reduce.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

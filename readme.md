@@ -14,3 +14,21 @@ Downloads the postcode KML fiile from doogal.co.uk and converts it to a JSON fil
 
 ### `npm run convert`
 Converts an existing KML file into a JSON file.
+
+### `npm run reduce`
+Reduces the converted KML into a simpler JSON file with a simple structure of
+```
+[
+  {
+    "name": "string",
+    "coordinates": [
+      {
+        "lng": double,
+        "lat": double
+      },
+      ...
+    ]
+  },
+  ...
+]
+```
